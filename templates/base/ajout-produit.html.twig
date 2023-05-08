@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{parent()}}Ajout produit
+{% endblock %}
+
+{% block body %}
+	{{ form_start(form) }}
+	{{ form_errors(form) }}
+
+	<body class="bg-white">
+		<p class="h1 text-center text-black mt-5 pt-5">Ajouter un produit</p>
+		<div class="container pt-3">
+			<div class="row justify-content-center">
+				<div
+					class="col-md-5">
+					<!-- Élément qui prend la moitié de la page -->
+					<div class="form-group">
+						{{ form_label(form.image) }}
+						{{ form_widget(form.image) }}
+						{{ form_errors(form.image) }}
+					</div>
+				</div>
+				<div class="col-md-6 ms-2 ps-5">
+					<div class="row">
+						<div class="row">
+							<div
+								class="col-md-12">
+								<!-- Information 1 -->
+								<div class="form-group">
+									{{ form_label(form.designation) }}
+									{{ form_widget(form.designation) }}
+									{{ form_errors(form.designation) }}
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div
+								class="col-md-12">
+								<!-- Information 2 -->
+								<div class="form-group">
+									{{ form_label(form.prix) }}
+									{{ form_widget(form.prix) }}
+									{{ form_errors(form.prix) }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 px-2 pt-2">
+				<div class="row justify-content-center">
+					<div class="form-group">
+						{{ form_label(form.description) }}
+						{{ form_widget(form.description) }}
+						{{ form_errors(form.description) }}
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 px-2 pt-2">
+				<div class="row justify-content-center">
+					<div class="form-group">
+						{{ form_label(form.tag) }}
+						{{ form_widget(form.tag) }}
+						{{ form_errors(form.tag) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+
+	<div class="form-group text-center py-2 mb-5">
+		{{ form_widget(form.ajouter, {'label': 'Ajouter', 'attr': {'class': 'btn btn-primary'}}) }}
+	</div>
+
+
+	{{ form_end(form) }}
+
+</div>{% endblock %}
+

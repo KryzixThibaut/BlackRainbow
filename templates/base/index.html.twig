@@ -1,7 +1,162 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{parent()}}Accueil{% endblock %}
+{% block title %}
+	{{parent()}}Accueil
+{% endblock %}
+
 
 {% block body %}
-    <h1 class="text-center text-primary"> Sport </h1>
+
+<body class="bg-white">
+
+
+	<div class="container-fluid px-3 py-5 gx-1 bg-dark">
+		<h1 class=" text-white fw-bold fs-1 mb-5 pt-5 text-center text-uppercase">Promotions</h1>
+
+		<div class="row">
+			<div class="col-4">
+				<a href="{{path('ajout-produit')}}">
+					<div class="card-primary" style="width: 80%">
+						<div class="card-body">
+						</div>
+						<img src="images/hommes.jpg" class="img-fluid" style="height: auto; max-width: 100%;" alt="HOMMES">
+					</div>
+				</a>
+			</div>
+			<div class="col-4">
+				<a href="{{path('ajout-produit')}}">
+					<div class="card-primary" style="width: 80%">
+						<div class="card-body">
+						</div>
+						<img src="images/femmes.jpg" class="card-img-top" alt="FEMMES">
+
+					</div>
+				</a>
+			</div>
+			<div class="col-4">
+				<a href="{{path('ajout-produit')}}">
+					<div class="card-primary" style="width: 80%">
+						<div class="card-body">
+						</div>
+						<img src="images/enfants.jpg" class="card-img-top" alt="ENFANTS">
+
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+
+
+<div class="header-unit">
+	<a href="">
+        <div id="video-container">
+            <h1 id="video-overlay" class="text-white fs-1 fw-bold">ENTREZ DANS LE RYTHME</h1>
+			<h1 id="video-overlaybis" class="text-primary fs-1 fw-bold">Collection tendances</h1>
+            <video autoplay muted loop class="fillWidth">
+              <source src="images/addidaspub.mp4">
+            </video>
+        </div>
+	</a>	
+</div>  
+
+
+	<div class="container-fluid px-3 py-5 gx-1">
+		<h1 class=" text-black fw-bold fs-1 mb-5"><i class="bi bi-arrow-right"></i> Par Catégories</h1>
+
+		<div class="row">
+			<div class="col-4">
+				<a href="{{path('ajout-produit')}}">
+					<div class="card-primary" style="width: 100%">
+						<div class="card-body">
+							<p class="text-primary text-uppercase fs-4">Hommes</p>
+						</div>
+						<img src="images/hommes.jpg" class="img-fluid" style="height: auto; max-width: 100%;" alt="HOMMES">
+					</div>
+				</a>
+			</div>
+			<div class="col-4">
+				<a href="{{path('ajout-produit')}}">
+					<div class="card-primary" style="width: 100%">
+						<div class="card-body">
+							<p class="text-primary text-uppercase fs-4">Femmes</p>
+						</div>
+						<img src="images/femmes.jpg" class="card-img-top" alt="FEMMES">
+
+					</div>
+				</a>
+			</div>
+			<div class="col-4">
+				<a href="{{path('ajout-produit')}}">
+					<div class="card-primary" style="width: 100%">
+						<div class="card-body">
+							<p class="text-primary text-uppercase fs-4">Enfants</p>
+						</div>
+						<img src="images/enfants.jpg" class="card-img-top" alt="ENFANTS">
+
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="container-fluid px-3 py-5 gx-1 bg-dark">
+		<h1 class=" text-white fw-bold fs-1 mb-5 text-end">Par Marques <i class="bi bi-arrow-left"></i></h1>
+
+		<div class="row justify-content-center">
+			<div class="col-2">
+				<a href="{{path('ajout-produit')}}">
+					<div class="card-primary" style="width: 100%">
+						<div class="card-body">
+						</div>
+						<img src="images/nikelogo.png" class="img-fluid" style="height: auto; max-width: 100%;" alt="Nike">
+					</div>
+				</a>
+			</div>
+			<div class="col-2">
+				<a href="{{path('ajout-produit')}}">
+					<div class="card-primary" style="width: 100%">
+						<div class="card-body">
+						</div>
+						<img src="images/adidaslogo.png" class="card-img-top" alt="adidas">
+
+					</div>
+				</a>
+			</div>
+			<div class="col-2">
+				<a href="{{path('ajout-produit')}}">
+					<div class="card-primary" style="width: 100%">
+						<div class="card-body">
+						</div>
+						<img src="images/reeboklogo.png" class="card-img-top" alt="reebok">
+
+					</div>
+				</a>
+			</div>
+			<div class="col-2">
+				<a href="{{path('ajout-produit')}}">
+					<div class="card-primary" style="width: 100%">
+						<div class="card-body">
+						</div>
+						<img src="images/pumalogo.png" class="card-img-top" alt="puma">
+
+					</div>
+				</a>
+			</div>
+			<div class="col-2">
+				<a href="{{path('ajout-produit')}}">
+					<div class="card-primary" style="width: 100%">
+						<div class="card-body">
+						</div>
+						<img src="images/thenorthfacelogo.png" class="card-img-top" alt="thenorthface">
+
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
 {% endblock %}
+

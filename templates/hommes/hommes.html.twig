@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{parent()}}Hommes
+{% endblock %}
+
+{% block body %}
+	<body class="bg-white">
+		<p class="h1 text-center my-5 py-5 text-black">Les articles pour Homme</p>
+		{% if articles is defined %}
+			<div class="shop container">
+				<div class="shop-content">
+					{% for article in articles %}
+						<div class="product-box">
+							<img class="card-img d-block w-100" src="{{ asset('uploads/fichiers/'~article.image) }}" alt="{{ article.designation }}">
+							<h5 class="card-title text-black fs-6 fw-bold">{{ article.designation }}</h5>
+							<span class="card-text text-black fst-italic">{{ article.prix }}€</span>
+							<i class="bi bi-star add-fav text-primary" style="font-size: 1.25rem;"></i>
+							<i class="bi bi-bag add-cart text-white"></i>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		{% else %}
+			<p>Aucun produit correspondant aux tags spécifiés.</p>
+		{% endif %}
+	</body>
+{% endblock %}

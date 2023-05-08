@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{parent()}}Suppression Produit
+{% endblock %}
+
+{% block body %}
+	<body class="bg-white">
+		<p class="h1 text-center my-5 py-5 text-black">Suppression d'un article:</p>
+<div class="d-flex flex-column align-items-center">
+						<img class="solo-img" src="{{ asset('uploads/fichiers/'~articles.image) }}" alt="{{ articles.designation }}">
+						<h5 class="card-title text-black fs-6 fw-bold">{{ articles.designation }}</h5>
+						<span class="card-text text-black fst-italic">{{ articles.prix }}€</span>
+						<span class="card-text text-black fst-italic">id produit : {{ articles.id }}</span>
+						<a href="{{path('supprimer-produit',{'id':articles.id})}}"><button type="button" class="btn btn-danger delete-button mt-2 text-primary fw-bold">SUPPRIMER</button></a>
+						<a href="{{path('modif-produit')}}"><button type="button" class="btn btn-danger delete-button mt-2 text-black">Retour</button></a>
+
+			</div>
+	</body>
+
+
+{% endblock %}
