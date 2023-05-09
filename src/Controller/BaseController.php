@@ -28,10 +28,34 @@ class BaseController extends AbstractController
     #[Route('/index', name: 'index')]
     public function index(): Response
     {
+        
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT p
+            FROM App\Entity\Articles p
+            WHERE p.tag LIKE :motCle'
+        )->setParameter('motCle', '%promo%');
+        $resultatspromo = $query->getResult();
+                     
+            
+            $nouvoem = $this->getDoctrine()->getManager();
+        $nouvoquery = $em->createQuery(
+            'SELECT p
+            FROM App\Entity\Articles p
+            WHERE p.tag LIKE :motCle'
+        )->setParameter('motCle', '%nouveau%');
+        $resultatsnouvo = $nouvoquery->getResult();
+        
         return $this->render('base/index.html.twig', [
-          
+            'promos' => $resultatspromo,
+            'nouvos' => $resultatsnouvo,
+
+
+
         ]);
     }
+
+    
 
     #[Route('/hommes', name: 'hommes')]
     public function hommes(): Response
@@ -228,4 +252,25 @@ public function deleteProduct(Request $request, int $id): Response
 
     return $this->redirectToRoute('modif-produit');
 }
+
+
+
+
+#[Route('base/produit-details{id}', name: 'produit-details')]
+public function detailsProduct(Request $request, int $id): Response
+{
+    $entityManager = $this->getDoctrine()->getManager();
+    $product = $entityManager->getRepository(Articles::class)->find($id);
+
+    if (!$product) {
+        throw $this->createNotFoundException('Produit non trouvé avec id ' . $id);
+    }
+
+
+    return $this->render('base/produit-details.html.twig',[
+    'articles' => $product,]);
+
 }
+
+}
+

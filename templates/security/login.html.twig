@@ -27,16 +27,16 @@
 
 					{% if app.user %}
 						<div class="mb-3">
-							You are logged in as
+							Vous êtes connecté en tant
 							{{ app.user.username }},
 							<a href="{{ path('app_logout') }}">Logout</a>
 						</div>
 					{% endif %}
 
 					
-					<label for="inputEmail" class="fw-bold">Email</label>
+					<label for="inputEmail" class="fw-bold text-black">Email</label>
 					<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-					<label for="inputPassword" class="fw-bold">Mot de passe</label>
+					<label for="inputPassword" class="fw-bold text-black">Mot de passe</label>
 					<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
 					<input

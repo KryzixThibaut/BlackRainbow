@@ -7,156 +7,154 @@
 
 {% block body %}
 
-<body class="bg-white">
+	<body class="bg-white">
 
-
-	<div class="container-fluid px-3 py-5 gx-1 bg-dark">
-		<h1 class=" text-white fw-bold fs-1 mb-5 pt-5 text-center text-uppercase">Promotions</h1>
-
-		<div class="row">
-			<div class="col-4">
-				<a href="{{path('ajout-produit')}}">
-					<div class="card-primary" style="width: 80%">
-						<div class="card-body">
+		{% if promos is defined and promos|length > 0 %}
+			<div class="container-fluid px-3 pb-3 pt-5 gx-1 bg-dark horizontal-scrollable">
+				<h1 class=" text-white fw-bold fs-1 mb-3 pt-5 text-center text-uppercase">Promotions</h1>
+				<div class="row flex-nowrap">
+					{% for promo in promos %}
+						<div class="col-4">
+							<div class="card-promo" style="width: 100%">
+								<a href="{{path('produit-details',{'id':promo.id})}}">
+									<img src="{{ asset('uploads/fichiers/'~promo.image) }}" alt="{{ promo.designation }}" class="img-fluid" style="height: auto; max-width: 100%;"></a>
+								<div class="card-body pt-2">
+									<span class="card-text text-primary">{{ promo.prix }}€</span>
+								</div>
+							</div>
 						</div>
-						<img src="images/hommes.jpg" class="img-fluid" style="height: auto; max-width: 100%;" alt="HOMMES">
-					</div>
-				</a>
+					{% endfor %}
+				</div>
 			</div>
-			<div class="col-4">
-				<a href="{{path('ajout-produit')}}">
-					<div class="card-primary" style="width: 80%">
-						<div class="card-body">
-						</div>
-						<img src="images/femmes.jpg" class="card-img-top" alt="FEMMES">
+		{% endif %}
 
-					</div>
-				</a>
-			</div>
-			<div class="col-4">
-				<a href="{{path('ajout-produit')}}">
-					<div class="card-primary" style="width: 80%">
-						<div class="card-body">
-						</div>
-						<img src="images/enfants.jpg" class="card-img-top" alt="ENFANTS">
 
+		<div class="header-unit">
+			<a href="">
+				<div id="video-container">
+					<h1 id="video-overlay" class="text-white fs-1 fw-bold">BlackRainbow</h1>
+					<h1 id="video-overlaybis" class="text-primary fs-1 fw-bold">ENTREZ DANS LE RYTHME</h1>
+					<video autoplay muted loop class="fillWidth">
+						<source src="images/addidaspub.mp4">
+					</video>
+				</div>
+			</a>
+		</div>
+
+{% if nouvos is defined and nouvos|length > 0 %}
+	<div class="container-fluid px-3 pb-3 pt-5 gx-1 bg-dark horizontal-scrollable">
+		<h1 class=" text-primary fw-bold fs-1 mb-3 pt-5 text-center text-uppercase">Nouveautés</h1>
+		<div class="row flex-nowrap">
+			{% for promo in nouvos %}
+				<div class="col-4">
+					<div class="card-promo" style="width: 100%">
+						<a href="{{path('produit-details',{'id':promo.id})}}">
+							<img src="{{ asset('uploads/fichiers/'~promo.image) }}" alt="{{ promo.designation }}" class="img-fluid" style="height: auto; max-width: 100%;"></a>
+						<div class="card-body pt-2">
+							<span class="card-text text-white">{{ promo.prix }}€</span>
+						</div>
 					</div>
-				</a>
-			</div>
+				</div>
+			{% endfor %}
 		</div>
 	</div>
+{% endif %}
 
 
+		<div class="container-fluid px-3 py-5 gx-1">
+			<h1 class=" text-black fw-bold fs-1 mb-5">
+				<i class="bi bi-arrow-right"></i>
+				Par Catégories</h1>
 
-<div class="header-unit">
-	<a href="">
-        <div id="video-container">
-            <h1 id="video-overlay" class="text-white fs-1 fw-bold">ENTREZ DANS LE RYTHME</h1>
-			<h1 id="video-overlaybis" class="text-primary fs-1 fw-bold">Collection tendances</h1>
-            <video autoplay muted loop class="fillWidth">
-              <source src="images/addidaspub.mp4">
-            </video>
-        </div>
-	</a>	
-</div>  
-
-
-	<div class="container-fluid px-3 py-5 gx-1">
-		<h1 class=" text-black fw-bold fs-1 mb-5"><i class="bi bi-arrow-right"></i> Par Catégories</h1>
-
-		<div class="row">
-			<div class="col-4">
-				<a href="{{path('ajout-produit')}}">
-					<div class="card-primary" style="width: 100%">
-						<div class="card-body">
-							<p class="text-primary text-uppercase fs-4">Hommes</p>
+			<div class="row">
+				<div class="col-4">
+					<a href="{{path('hommes')}}">
+						<div class="card-primary" style="width: 100%">
+							<div class="card-body">
+								<p class="text-primary text-uppercase fs-4">Hommes</p>
+							</div>
+							<img src="images/hommes.jpg" class="img-fluid" style="height: auto; max-width: 100%;" alt="HOMMES">
 						</div>
-						<img src="images/hommes.jpg" class="img-fluid" style="height: auto; max-width: 100%;" alt="HOMMES">
-					</div>
-				</a>
-			</div>
-			<div class="col-4">
-				<a href="{{path('ajout-produit')}}">
-					<div class="card-primary" style="width: 100%">
-						<div class="card-body">
-							<p class="text-primary text-uppercase fs-4">Femmes</p>
-						</div>
-						<img src="images/femmes.jpg" class="card-img-top" alt="FEMMES">
+					</a>
+				</div>
+				<div class="col-4">
+					<a href="{{path('femmes')}}">
+						<div class="card-primary" style="width: 100%">
+							<div class="card-body">
+								<p class="text-primary text-uppercase fs-4">Femmes</p>
+							</div>
+							<img src="images/femmes.jpg" class="card-img-top" alt="FEMMES">
 
-					</div>
-				</a>
-			</div>
-			<div class="col-4">
-				<a href="{{path('ajout-produit')}}">
-					<div class="card-primary" style="width: 100%">
-						<div class="card-body">
-							<p class="text-primary text-uppercase fs-4">Enfants</p>
 						</div>
-						<img src="images/enfants.jpg" class="card-img-top" alt="ENFANTS">
+					</a>
+				</div>
+				<div class="col-4">
+					<a href="{{path('enfants')}}">
+						<div class="card-primary" style="width: 100%">
+							<div class="card-body">
+								<p class="text-primary text-uppercase fs-4">Enfants</p>
+							</div>
+							<img src="images/enfants.jpg" class="card-img-top" alt="ENFANTS">
 
-					</div>
-				</a>
+						</div>
+					</a>
+				</div>
 			</div>
 		</div>
-	</div>
 
 
+		<div class="container-fluid px-3 py-5 gx-1 bg-dark">
+			<h1 class=" text-white fw-bold fs-1 mb-5 text-end">Par Marques
+				<i class="bi bi-arrow-left"></i>
+			</h1>
 
-	<div class="container-fluid px-3 py-5 gx-1 bg-dark">
-		<h1 class=" text-white fw-bold fs-1 mb-5 text-end">Par Marques <i class="bi bi-arrow-left"></i></h1>
-
-		<div class="row justify-content-center">
-			<div class="col-2">
-				<a href="{{path('ajout-produit')}}">
-					<div class="card-primary" style="width: 100%">
-						<div class="card-body">
+			<div class="row justify-content-center">
+				<div class="col-2">
+					<a href="{{path('nike')}}">
+						<div class="card-primary" style="width: 100%">
+							<div class="card-body"></div>
+							<img src="images/nikelogo.png" class="img-fluid" style="height: auto; max-width: 100%;" alt="Nike">
 						</div>
-						<img src="images/nikelogo.png" class="img-fluid" style="height: auto; max-width: 100%;" alt="Nike">
-					</div>
-				</a>
-			</div>
-			<div class="col-2">
-				<a href="{{path('ajout-produit')}}">
-					<div class="card-primary" style="width: 100%">
-						<div class="card-body">
-						</div>
-						<img src="images/adidaslogo.png" class="card-img-top" alt="adidas">
+					</a>
+				</div>
+				<div class="col-2">
+					<a href="{{path('adidas')}}">
+						<div class="card-primary" style="width: 100%">
+							<div class="card-body"></div>
+							<img src="images/adidaslogo.png" class="card-img-top" alt="adidas">
 
-					</div>
-				</a>
-			</div>
-			<div class="col-2">
-				<a href="{{path('ajout-produit')}}">
-					<div class="card-primary" style="width: 100%">
-						<div class="card-body">
 						</div>
-						<img src="images/reeboklogo.png" class="card-img-top" alt="reebok">
+					</a>
+				</div>
+				<div class="col-2">
+					<a href="{{path('reebok')}}">
+						<div class="card-primary" style="width: 100%">
+							<div class="card-body"></div>
+							<img src="images/reeboklogo.png" class="card-img-top" alt="reebok">
 
-					</div>
-				</a>
-			</div>
-			<div class="col-2">
-				<a href="{{path('ajout-produit')}}">
-					<div class="card-primary" style="width: 100%">
-						<div class="card-body">
 						</div>
-						<img src="images/pumalogo.png" class="card-img-top" alt="puma">
+					</a>
+				</div>
+				<div class="col-2">
+					<a href="{{path('puma')}}">
+						<div class="card-primary" style="width: 100%">
+							<div class="card-body"></div>
+							<img src="images/pumalogo.png" class="card-img-top" alt="puma">
 
-					</div>
-				</a>
-			</div>
-			<div class="col-2">
-				<a href="{{path('ajout-produit')}}">
-					<div class="card-primary" style="width: 100%">
-						<div class="card-body">
 						</div>
-						<img src="images/thenorthfacelogo.png" class="card-img-top" alt="thenorthface">
+					</a>
+				</div>
+				<div class="col-2">
+					<a href="{{path('thenorthface')}}">
+						<div class="card-primary" style="width: 100%">
+							<div class="card-body"></div>
+							<img src="images/thenorthfacelogo.png" class="card-img-top" alt="thenorthface">
 
-					</div>
-				</a>
+						</div>
+					</a>
+				</div>
 			</div>
 		</div>
-	</div>
-</body>
+	</body>
 {% endblock %}
 

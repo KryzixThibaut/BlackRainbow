@@ -20,16 +20,16 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('identifiant',TextType::class, ['attr' => ['class'=> 'form-control'], 'label_attr' => ['class'=> 'fw-bold']])
-            ->add('email', EmailType::class, ['attr' => ['class'=> 'form-control'], 'label_attr' => ['class'=> 'fw-bold']])
+            ->add('identifiant',TextType::class, ['attr' => ['class'=> 'form-control'], 'label_attr' => ['class'=> 'fw-bold text-black']])
+            ->add('email', EmailType::class, ['attr' => ['class'=> 'form-control'], 'label_attr' => ['class'=> 'fw-bold text-black']])
         
             ->add('password', RepeatedType::class,[
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passes ne sont pas identiques',
-                'options' => ['attr' => ['class' => 'password-field','form-control'], 'label_attr' => ['class'=> 'fw-bold']],
+                'options' => ['attr' => ['class' => 'password-field','form-control'], 'label_attr' => ['class'=> 'fw-bold text-black']],
                 'required' => true,
-                'first_options'  => ['attr' => ['class'=> 'form-control'],'label' => 'Mot de passe'],
-                'second_options' => ['attr' => ['class'=> 'form-control'],'label' => 'Confirmer le mot de passe'],
+                'first_options'  => ['attr' => ['class'=> 'form-control'],'label' => 'Mot de passe', 'label_attr' => ['class'=> 'fw-bold text-black']],
+                'second_options' => ['attr' => ['class'=> 'form-control'],'label' => 'Confirmer le mot de passe', 'label_attr' => ['class'=> 'fw-bold text-black']],
             ])
             ->add('confirmer', SubmitType::class, ['attr' => ['class'=> 'btn bg-primary text-white m-4' ], 'row_attr' => ['class' => 'text-center'],])
 

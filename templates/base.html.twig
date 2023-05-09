@@ -33,16 +33,16 @@
 						<a id="soulignement" class="nav-link text-black soulignement fw-bold" href="{{path('hommes')}}">Hommes</a>
 					</li>
 					<li class="nav-item">
-						<a id="soulignement" class="nav-link text-black soulignement fw-bold" href="">Femmes</a>
+						<a id="soulignement" class="nav-link text-black soulignement fw-bold" href="{{path('femmes')}}">Femmes</a>
 					</li>
 					<li class="nav-item">
-						<a id="soulignement" class="nav-link text-black soulignement fw-bold" href="">Enfants</a>
+						<a id="soulignement" class="nav-link text-black soulignement fw-bold" href="{{path('enfants')}}">Enfants</a>
 					</li>
 					<li class="nav-item">
-						<a id="soulignement" class="nav-link text-primary soulignement " href="">Nouveautés</a>
+						<a id="soulignement" class="nav-link text-primary soulignement " href="{{path('nouveautes')}}">Nouveautés</a>
 					</li>
 					<li class="nav-item">
-						<a id="soulignement" class="nav-link text-primary soulignement" href="">Collections</a>
+						<a id="soulignement" class="nav-link text-primary soulignement" href="{{path('promos')}}">Promotions</a>
 					</li>
 				</ul>
 
@@ -57,11 +57,6 @@
 					</ul>
 					{% else %}
 					<ul class="navbar-nav ms-auto mx-3">
-						<li class="nav-item">
-							<a class="text-black mx-3">
-								<i class="text-black bi bi-bookmark-star text-light zoom" style="font-size: 2rem;"></i>
-							</a>
-						</li>
 						<li class="nav-item">
 							<a class="text-black mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
 								<i class="bi bi-person-lines-fill" style="font-size: 2rem;"></i>
@@ -107,12 +102,63 @@
       {{ message }}
       </h2>
     {% endfor %}
-{% block body %}
 
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+{% if app.user.panier.ajouters is defined and app.user.panier.ajouters|length > 0 %}
+
+	<button class="btn btn-primary btn-canvas-panier " tabindex="-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"><i class="bi bi-basket-fill"></i></button>
+
+
+<div class="offcanvas offcanvas-bottom" tabindex="7" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas-header py-0">
+  <div class="container-fluid">
+  <div class="row cols mr-4">
+    <h5 class="offcanvas-title text-black mr-5" id="offcanvasBottomLabel">
+      Mon panier  
+      <span  class="text-black fw-normal ml-5 pl-5" style="display: inline-block;  margin-left: 20px;">Articles total :</span>
+      {% set total = 0 %}
+	  {% set total_price = 0 %}
+      {% for ajouter in app.user.panier.ajouters %}
+        {% set total = total + ajouter.qte %}
+		{% set total_price = total_price + ajouter.produit.prix * ajouter.qte %}
+      {% endfor %}
+      <span style="display: inline-block;" class="text-primary">{{ total }}</span>
+	        <span  class="text-black fw-normal ml-5 pl-5" style="display: inline-block; margin-left: 20px;">Total :</span>
+	  <span style="display: inline-block;" class="text-primary">{{ total_price }}€</span>
+    </h5>
+  </div>
+</div>
+    <button type="button" class="btn-close text-primary" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="container-fluid horizontal-scrollable shop-content">
+      <div class="row flex-nowrap">
+        {% for ajouter in app.user.panier.ajouters %}
+        <div class="cardpanier">
+		<div class="crop">
+            <img src="{{ asset('uploads/fichiers/' ~ ajouter.produit.image) }}" alt="{{ ajouter.produit.designation }}" style="max-width:150px; overflow: hidden;">
+			</div>
+              <h5 class="cardpanier-title text-black">{{ ajouter.produit.designation }}</h5>
+              <p class="cardpanier-price text-primary">{{ ajouter.produit.prix }}€<a href="{{ path('retirer-panier', {'id': ajouter.id}) }}"><i class="bi bi-cart-dash-fill" style="font-size: 0.8rem; color: red;"></i><a class="text-black">x{{ ajouter.qte }}</a>
+</a></p>
+			  
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endif %}
+
+
+
+{% block body %}
 
 {% endblock %}
 
-	<footer class="footerBar">
+	<footer class="footerBar bg-white">
 		<!-- Grid container -->
 		<div
 			class="container p-4">
@@ -121,7 +167,7 @@
 				class="row">
 				<!--Grid column-->
 				<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-					<h5 class="text-uppercase text-primary fw-bold">S P O R T Y</h5>
+					<h5 class="text-uppercase text-primary fw-bold">BlackRainbow</h5>
 
 					<p class="text-black">
 						Site de démonstration d'un site de commerce de vêtements de sports
@@ -131,15 +177,9 @@
 
 				<!--Grid column-->
 				<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-					<h5 class="text-uppercase text-primary fw-bold">Contact</h5>
-
+					<h5 class="text-uppercase text-primary fw-bold">Infos</h5>
 					<p class="text-black">
-						Vous rencontrez un problème ?
-						<i class="bi bi-arrow-down"></i>
-					</p>
-					<p class="text-black">
-						<i class="bi bi-envelope-exclamation-fill text-black">
-							Envoyer un message au support</i>
+						Nous vendons des vêtements et accessoires provenant d'autres sites. Nous ne sommes pas responsables des problèmes de qualité ou de retours. Les prix et les produits peuvent changer sans préavis. Nous recueillons des informations à des fins statistiques et marketing. Merci pour votre confiance.
 					</p>
 				</div>
 				<!--Grid column-->
@@ -180,6 +220,37 @@ $(document).ready(function() {
     $('#soulignement').addClass('soulignement');
   });
 });
+
+
+function notify(type,message){
+  (()=>{
+    let n = document.createElement("div");
+    let id = Math.random().toString(36).substr(2,10);
+    n.setAttribute("id",id);
+    n.classList.add("notification",type);
+    n.innerText = message;
+    document.getElementById("notification-area").appendChild(n);
+    setTimeout(()=>{
+      var notifications = document.getElementById("notification-area").getElementsByClassName("notification");
+      for(let i=0;i<notifications.length;i++){
+        if(notifications[i].getAttribute("id") == id){
+          notifications[i].remove();
+          break;
+        }
+      }
+    },5000);
+  })();
+}
+
+function notifySuccess(){
+  notify("success","Article ajouté au panier");
+}
+function notifyError(){
+  notify("error","This is demo error notification message");
+}
+function notifyInfo(){
+  notify("info","This is demo info notification message");
+}
 
 </script>
 

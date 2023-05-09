@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{parent()}}Puma
+{% endblock %}
+
+{% block body %}
+	<body class="bg-white">
+		<p class="h1 text-center my-5 py-5 text-black">Les articles Puma</p>
+		{% if articles is defined %}
+			<div class="shop container">
+				<div class="shop-content">
+					{% for article in articles %}
+						<div class="product-box">
+													<a href="{{path('produit-details',{'id':article.id})}}">
+
+							<img class="card-img d-block w-100" src="{{ asset('uploads/fichiers/'~article.image) }}" alt="{{ article.designation }}"></a>
+							<h5 class="card-title text-black fs-6 fw-bold">{{ article.designation }}</h5>
+							<span class="card-text text-black fst-italic">{{ article.prix }}€</span>
+							<a href="{{path('ajout-panier',{'id':article.id,'page':'hommes'})}}" onclick="notifySuccess()"><i class="bi bi-bag add-cart text-white"></i></a>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		{% else %}
+			<p>Aucun produit correspondant aux tags spécifiés.</p>
+		{% endif %}
+	</body>
+{% endblock %}
